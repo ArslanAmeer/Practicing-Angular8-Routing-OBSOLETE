@@ -16,7 +16,7 @@ import { ServersService } from './servers/servers.service';
 // Adding A Const as a Route with your components configured as routes
 const appRoutes: Routes = [
   { path: '', component: HomeComponent }, // this is for Default Page or empty url
-  { path: 'users', component: UserComponent },
+  { path: 'users', component: UsersComponent },
   { path: 'servers', component: ServersComponent },
 ];
 
