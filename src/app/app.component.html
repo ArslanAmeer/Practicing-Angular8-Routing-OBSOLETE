@@ -8,19 +8,12 @@
       </ul>
     </div>
   </div>
+  <!-- Remove all Components directly added & add only ONE Provided router Selector -->
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <app-home></app-home>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <app-users></app-users>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <app-servers></app-servers>
+      <!-- <app-home></app-home> // REMOVED -->
+      <!-- Router-Outlet added which load component as a page -->
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>
