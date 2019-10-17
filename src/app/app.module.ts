@@ -17,6 +17,7 @@ import { ServersService } from './servers/servers.service';
 const appRoutes: Routes = [
   { path: '', component: HomeComponent }, // this is for Default Page or empty url
   { path: 'users', component: UsersComponent },
+  { path: 'users/:id/:name', component: UserComponent }, // adding fetchable params in url
   { path: 'servers', component: ServersComponent },
 ];
 
