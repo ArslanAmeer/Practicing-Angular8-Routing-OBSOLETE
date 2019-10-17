@@ -1,2 +1,5 @@
 <p>User with ID ({{user.id}}) loaded.</p>
 <p>User name is {{user.name}}</p>
+
+<!-- Button added to test RouterLink passed with parameter and changed on  with same component -->
+<button type="button" class="btn btn-default" [routerLink]="['/users','10','Anna']">Reload to 10 Anna</button>
