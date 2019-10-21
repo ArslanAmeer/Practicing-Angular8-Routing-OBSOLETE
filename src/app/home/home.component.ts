@@ -15,4 +15,9 @@ export class HomeComponent implements OnInit {
     // Just Like redirecting to some other page we can redirect with injecting Router in any TS file
     this.router.navigate(['servers']);
   }
+
+  loadServer(id: number) {
+    // testing passing QueryParams & fragment programmatically
+    this.router.navigate(['servers', id, 'edit'], {queryParams: {allowGet: '2'}, fragment: 'loading2'});
+  }
 }

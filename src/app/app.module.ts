@@ -19,6 +19,7 @@ const appRoutes: Routes = [
   { path: 'users', component: UsersComponent },
   { path: 'users/:id/:name', component: UserComponent }, // adding fetchable params in url
   { path: 'servers', component: ServersComponent },
+  { path: 'servers/:id/edit', component: EditServerComponent }, // passing queryParameters through routerLink & programmatically
 ];
 
 @NgModule({
