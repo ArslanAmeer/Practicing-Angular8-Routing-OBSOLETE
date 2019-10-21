@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Params} from '@angular/router';
 
 import { ServersService } from '../servers.service';
 
@@ -10,10 +11,18 @@ import { ServersService } from '../servers.service';
 export class ServerComponent implements OnInit {
   server: {id: number, name: string, status: string};
 
-  constructor(private serversService: ServersService) { }
+  constructor(private serversService: ServersService , private router: ActivatedRoute) { }
 
   ngOnInit() {
-    this.server = this.serversService.getServer(1);
+    const serverId = +this.router.snapshot.params['id']; // + sign is to cast into integer
+    // passing Id fetched from router params into gertServer function.
+    this.server = this.serversService.getServer(serverId);
+
+    this.router.params.subscribe(
+      (param: Params) => {
+        this.server = this.serversService.getServer(+param['id']);
+      }
+    );
   }
 
 }
