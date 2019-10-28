@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 
 import { ServersService } from '../servers.service';
 
@@ -11,18 +11,24 @@ import { ServersService } from '../servers.service';
 export class ServerComponent implements OnInit {
   server: {id: number, name: string, status: string};
 
-  constructor(private serversService: ServersService , private router: ActivatedRoute) { }
+  constructor(private serversService: ServersService ,
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
-    const serverId = +this.router.snapshot.params['id']; // + sign is to cast into integer
+    const serverId = +this.route.snapshot.params['id']; // + sign is to cast into integer
     // passing Id fetched from router params into gertServer function.
     this.server = this.serversService.getServer(serverId);
 
-    this.router.params.subscribe(
+    this.route.params.subscribe(
       (param: Params) => {
         this.server = this.serversService.getServer(+param['id']);
       }
     );
   }
 
+  onEdit() {
+    // queryParamsHandling: 'preserve' is used to hold previous(or parents) query parameters. while merge used to overwrite with new ones
+    this.router.navigate(['edit'], { relativeTo: this.route, queryParamsHandling: 'preserve' });
+  }
 }
