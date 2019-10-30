@@ -12,6 +12,7 @@ import { UserComponent } from './users/user/user.component';
 import { EditServerComponent } from './servers/edit-server/edit-server.component';
 import { ServerComponent } from './servers/server/server.component';
 import { ServersService } from './servers/servers.service';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 // Adding A Const as a Route with your components configured as routes
 const appRoutes: Routes = [
@@ -23,6 +24,8 @@ const appRoutes: Routes = [
       { path: ':id', component: ServerComponent }, // single id router to get server with id
       { path: ':id/edit', component: EditServerComponent }, // passing queryParameters through routerLink & programmatically
     ] },
+  {path: 'not-found', component: PageNotFoundComponent}, // Not Found Component Added
+  {path: '**', redirectTo: '/not-found'}  // ** to catch all invalid or undefined routes and redirect them to page not found component
 ];
 
 @NgModule({
@@ -34,6 +37,7 @@ const appRoutes: Routes = [
     UserComponent,
     EditServerComponent,
     ServerComponent,
+    PageNotFoundComponent,
   ],
   // RouterModule.forRoot is set with our constant appRoutes to load our custom routes
   imports: [BrowserModule, FormsModule, RouterModule.forRoot(appRoutes)],
