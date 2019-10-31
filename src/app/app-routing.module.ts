@@ -8,6 +8,7 @@ import {ServersComponent} from './servers/servers.component';
 import {ServerComponent} from './servers/server/server.component';
 import {EditServerComponent} from './servers/edit-server/edit-server.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import {AuthGuard} from './auth-guard.service';
 
 // Adding A Const as a Route with your components configured as routes
 const appRoutes: Routes = [
@@ -15,7 +16,7 @@ const appRoutes: Routes = [
   { path: 'users', component: UsersComponent, children: [
       { path: ':id/:name', component: UserComponent }, // adding fetchable params in url
     ] },
-  { path: 'servers', component: ServersComponent, children: [
+  { path: 'servers', canActivate: [AuthGuard], component: ServersComponent, children: [
       { path: ':id', component: ServerComponent }, // single id router to get server with id
       { path: ':id/edit', component: EditServerComponent }, // passing queryParameters through routerLink & programmatically
     ] },
