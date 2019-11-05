@@ -5,3 +5,7 @@
 <button class="btn btn-primary" (click)="loadRouter()">Load Servers</button> |
 <!-- Button for testing queryParams programmatically -->
 <button class="btn btn-primary" (click)="loadServer(1)">Load Server</button>
+<br><br>
+<!--For testing Guard, if loggedIn=true it will allow to open servers, if loggedIn=false it will not -->
+<button class="btn btn-default" (click)="login()">Login</button> |
+<button class="btn btn-default" (click)="logout()">LogOut</button>
