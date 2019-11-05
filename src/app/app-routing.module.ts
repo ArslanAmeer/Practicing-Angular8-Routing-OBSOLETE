@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 import {HomeComponent} from './home/home.component';
@@ -12,14 +12,21 @@ import {AuthGuard} from './auth-guard.service';
 
 // Adding A Const as a Route with your components configured as routes
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent }, // this is for Default Page or empty url
-  { path: 'users', component: UsersComponent, children: [
-      { path: ':id/:name', component: UserComponent }, // adding fetchable params in url
-    ] },
-  { path: 'servers', canActivate: [AuthGuard], component: ServersComponent, children: [
-      { path: ':id', component: ServerComponent }, // single id router to get server with id
-      { path: ':id/edit', component: EditServerComponent }, // passing queryParameters through routerLink & programmatically
-    ] },
+  {path: '', component: HomeComponent}, // this is for Default Page or empty url
+  {
+    path: 'users', component: UsersComponent, children: [
+      {path: ':id/:name', component: UserComponent}, // adding fetchable params in url
+    ]
+  },
+  {
+    path: 'servers',
+    // canActivate: [AuthGuard], // this will guard complete route including child routes
+    canActivateChild: [AuthGuard], // this will guard child routes only
+    component: ServersComponent, children: [
+      {path: ':id', component: ServerComponent}, // single id router to get server with id
+      {path: ':id/edit', component: EditServerComponent}, // passing queryParameters through routerLink & programmatically
+    ]
+  },
   {path: 'not-found', component: PageNotFoundComponent}, // Not Found Component Added
   {path: '**', redirectTo: '/not-found'}  // ** to catch all invalid or undefined routes and redirect them to page not found component
 ];
@@ -28,4 +35,5 @@ const appRoutes: Routes = [
   imports: [RouterModule.forRoot(appRoutes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}
