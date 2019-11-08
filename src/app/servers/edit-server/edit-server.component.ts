@@ -23,7 +23,8 @@ export class EditServerComponent implements OnInit, CanComponentDeactivate {
   ngOnInit() {
     console.log(this.route.snapshot.queryParams); // fetching queryParams & fragment.We can also subscribe to direct observable route.params
     console.log(this.route.snapshot.fragment);  // fetching queryParams & fragment.We can also subscribe to direct observable route.params
-    this.server = this.serversService.getServer(1);
+    const id = +this.route.snapshot.params['id'];
+    this.server = this.serversService.getServer(id);
     this.route.queryParams.subscribe((queryParams: Params) => {
       // fetching queryParams 'allowEdit' to check if user is allowed to edit specified server component
       this.allowEdit = queryParams['allowEdit'] === '1';
