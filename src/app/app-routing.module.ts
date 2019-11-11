@@ -11,6 +11,7 @@ import {EditServerComponent} from './servers/edit-server/edit-server.component';
 import {AuthGuard} from './auth-guard.service';
 import {CanDeactivateGuard} from './servers/edit-server/can-deactivate-guard.service';
 import {ErrorPageComponent} from './error-page/error-page.component';
+import {ServerResolver} from './servers/server/server-resolver.service';
 
 // Adding A Const as a Route with your components configured as routes
 const appRoutes: Routes = [
@@ -25,7 +26,7 @@ const appRoutes: Routes = [
     // canActivate: [AuthGuard], // this will guard complete route including child routes
     canActivateChild: [AuthGuard], // this will guard child routes only
     component: ServersComponent, children: [
-      {path: ':id', component: ServerComponent}, // single id router to get server with id
+      {path: ':id', component: ServerComponent, resolve: {Server: ServerResolver}}, // single id router to get server with id
       {path: ':id/edit', component: EditServerComponent, canDeactivate: [CanDeactivateGuard]}, // passing queryParameters through
                                                                                                // routerLink &
       // programmatically

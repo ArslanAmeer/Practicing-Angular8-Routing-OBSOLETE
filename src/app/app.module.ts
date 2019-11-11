@@ -15,7 +15,8 @@ import {AppRoutingModule} from './app-routing.module';
 import {AuthService} from './auth.service';
 import {AuthGuard} from './auth-guard.service';
 import {CanDeactivateGuard} from './servers/edit-server/can-deactivate-guard.service';
-import { ErrorPageComponent } from './error-page/error-page.component';
+import {ErrorPageComponent} from './error-page/error-page.component';
+import {ServerResolver} from './servers/server/server-resolver.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ErrorPageComponent } from './error-page/error-page.component';
   ],
   // RouterModule.forRoot is set with our constant appRoutes to load our custom routes
   imports: [BrowserModule, FormsModule, AppRoutingModule],
-  providers: [ServersService, AuthService, AuthGuard, CanDeactivateGuard],
+  // All Services will be added here in Providers
+  providers: [ServersService, AuthService, AuthGuard, CanDeactivateGuard, ServerResolver],
   bootstrap: [AppComponent],
 })
 export class AppModule {
